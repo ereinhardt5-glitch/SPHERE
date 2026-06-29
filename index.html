@@ -17,25 +17,184 @@ body {
 .wheel-container {
   width: 90vmin;
   height: 90vmin;
-  max-width: 700px;
-  max-height: 700px;
+  max-width: 750px;
+  max-height: 750px;
   animation: spin 60s linear infinite;
 }
 @keyframes spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
-.wheel-container img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  border-radius: 50%;
+svg { width: 100%; height: 100%; filter: drop-shadow(0 0 20px rgba(0,0,0,0.5)); }
+.center-text {
+  animation: counter-spin 60s linear infinite;
+  transform-origin: 350px 350px;
+}
+@keyframes counter-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
 }
 </style>
 </head>
 <body>
 <div class="wheel-container">
-  <img src="sphere.png" alt="Project Sphere">
+<svg viewBox="0 0 700 700" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <clipPath id="wheel"><circle cx="350" cy="350" r="348"/></clipPath>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10z" fill="white"/>
+    </marker>
+    <marker id="arrDk" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10z" fill="#4a6a7a"/>
+    </marker>
+  </defs>
+
+  <!-- Background circle -->
+  <circle cx="350" cy="350" r="348" fill="#d8dee4"/>
+
+  <g clip-path="url(#wheel)">
+
+    <!-- OUTER RING - 8 segments for roles -->
+    <!-- Segment 1: Top (Civil/Structural/Mechanical/Electrical/QC) - light blue-grey -->
+    <path d="M350,350 L350,2 A348,348 0 0,1 596,104 Z" fill="#c4d0da"/>
+    <!-- Segment 2: Top-right (Estimating) - lighter blue -->
+    <path d="M350,350 L596,104 A348,348 0 0,1 698,350 Z" fill="#d0dce6"/>
+    <!-- Segment 3: Right (Nucor/Vendor) - light grey-blue -->
+    <path d="M350,350 L698,350 A348,348 0 0,1 596,596 Z" fill="#dae2ea"/>
+    <!-- Segment 4: Bottom-right (Estimating/Automation/Panel) - very light blue -->
+    <path d="M350,350 L596,596 A348,348 0 0,1 350,698 Z" fill="#e2eaf0"/>
+    <!-- Segment 5: Bottom (Vendor Coord/Estimating) - warm cream -->
+    <path d="M350,350 L350,698 A348,348 0 0,1 104,596 Z" fill="#f0e4d6"/>
+    <!-- Segment 6: Bottom-left (Lead Estimator/Scope) - peach -->
+    <path d="M350,350 L104,596 A348,348 0 0,1 2,350 Z" fill="#e8d8c8"/>
+    <!-- Segment 7: Left (Vendor&Sub/Superintendent/Safety/Quality) - warm tan -->
+    <path d="M350,350 L2,350 A348,348 0 0,1 104,104 Z" fill="#d4c4b0"/>
+    <!-- Segment 8: Top-left (Project Controls/Estimating) - light grey -->
+    <path d="M350,350 L104,104 A348,348 0 0,1 350,2 Z" fill="#c8d4de"/>
+
+    <!-- Thin lines for outer segments -->
+    <line x1="350" y1="350" x2="350" y2="2" stroke="#b0b8c0" stroke-width="0.5"/>
+    <line x1="350" y1="350" x2="596" y2="104" stroke="#b0b8c0" stroke-width="0.5"/>
+    <line x1="350" y1="350" x2="698" y2="350" stroke="#b0b8c0" stroke-width="0.5"/>
+    <line x1="350" y1="350" x2="596" y2="596" stroke="#b0b8c0" stroke-width="0.5"/>
+    <line x1="350" y1="350" x2="350" y2="698" stroke="#b0b8c0" stroke-width="0.5"/>
+    <line x1="350" y1="350" x2="104" y2="596" stroke="#b0b8c0" stroke-width="0.5"/>
+    <line x1="350" y1="350" x2="2" y2="350" stroke="#b0b8c0" stroke-width="0.5"/>
+    <line x1="350" y1="350" x2="104" y2="104" stroke="#b0b8c0" stroke-width="0.5"/>
+
+    <!-- INNER RING - 6 PM segments -->
+    <!-- CDMG Engineering PM (top-right, dark teal) ~350,80 to ~580,160 -->
+    <path d="M350,350 L350,100 A250,250 0 0,1 567,167 Z" fill="#2c4a5a"/>
+    <!-- CDMG Building Systems PM (right, medium steel blue) -->
+    <path d="M350,350 L567,167 A250,250 0 0,1 567,533 Z" fill="#3d6478"/>
+    <!-- CDMG Integrated Solutions PM (bottom-right, dark navy) -->
+    <path d="M350,350 L567,533 A250,250 0 0,1 350,600 Z" fill="#1e3040"/>
+    <!-- Stevens Estimating PM (bottom-left, brown) -->
+    <path d="M350,350 L350,600 A250,250 0 0,1 133,533 Z" fill="#6b3a1f"/>
+    <!-- Stevens Estimating PM left part (darker brown) -->
+    <path d="M350,350 L133,533 A250,250 0 0,1 133,167 Z" fill="#7a4528"/>
+    <!-- Stevens/Chemsteel PM (top-left, dark teal) -->
+    <path d="M350,350 L133,167 A250,250 0 0,1 350,100 Z" fill="#2a4858"/>
+
+    <!-- Inner ring border -->
+    <circle cx="350" cy="350" r="250" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
+
+    <!-- Divider lines for inner ring -->
+    <line x1="350" y1="350" x2="350" y2="100" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
+    <line x1="350" y1="350" x2="567" y2="167" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
+    <line x1="350" y1="350" x2="567" y2="533" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
+    <line x1="350" y1="350" x2="350" y2="600" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
+    <line x1="350" y1="350" x2="133" y2="533" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
+    <line x1="350" y1="350" x2="133" y2="167" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
+
+    <!-- Circular flow arrows between inner segments -->
+    <path d="M375,115 A240,240 0 0,1 545,185" fill="none" stroke="white" stroke-width="2.5" marker-end="url(#arr)"/>
+    <path d="M555,200 A240,240 0 0,1 555,510" fill="none" stroke="white" stroke-width="2.5" marker-end="url(#arr)"/>
+    <path d="M545,525 A240,240 0 0,1 375,585" fill="none" stroke="white" stroke-width="2.5" marker-end="url(#arr)"/>
+    <path d="M325,585 A240,240 0 0,1 155,525" fill="none" stroke="white" stroke-width="2.5" marker-end="url(#arr)"/>
+    <path d="M145,510 A240,240 0 0,1 145,200" fill="none" stroke="white" stroke-width="2.5" marker-end="url(#arr)"/>
+    <path d="M155,185 A240,240 0 0,1 325,115" fill="none" stroke="white" stroke-width="2.5" marker-end="url(#arr)"/>
+
+    <!-- Outer ring arrows (dark, pointing outward/between) -->
+    <path d="M380,60 A295,295 0 0,1 520,75" fill="none" stroke="#4a6a7a" stroke-width="2" marker-end="url(#arrDk)"/>
+    <path d="M620,180 A295,295 0 0,1 650,300" fill="none" stroke="#4a6a7a" stroke-width="2" marker-end="url(#arrDk)"/>
+    <path d="M650,400 A295,295 0 0,1 620,520" fill="none" stroke="#4a6a7a" stroke-width="2" marker-end="url(#arrDk)"/>
+    <path d="M520,625 A295,295 0 0,1 380,640" fill="none" stroke="#4a6a7a" stroke-width="2" marker-end="url(#arrDk)"/>
+    <path d="M270,640 A295,295 0 0,1 130,570" fill="none" stroke="#4a6a7a" stroke-width="2" marker-end="url(#arrDk)"/>
+    <path d="M80,480 A295,295 0 0,1 55,350" fill="none" stroke="#4a6a7a" stroke-width="2" marker-end="url(#arrDk)"/>
+    <path d="M55,300 A295,295 0 0,1 80,180" fill="none" stroke="#4a6a7a" stroke-width="2" marker-end="url(#arrDk)"/>
+    <path d="M140,100 A295,295 0 0,1 280,55" fill="none" stroke="#4a6a7a" stroke-width="2" marker-end="url(#arrDk)"/>
+
+    <!-- INNER SEGMENT LABELS -->
+    <text text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-weight="bold" font-size="14">
+      <tspan x="430" y="210">CDMG</tspan>
+      <tspan x="430" dy="18">Engineering PM</tspan>
+    </text>
+    <text text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-weight="bold" font-size="14">
+      <tspan x="500" y="330">CDMG Building</tspan>
+      <tspan x="500" dy="18">Systems PM</tspan>
+    </text>
+    <text text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-weight="bold" font-size="14">
+      <tspan x="460" y="485">CDMG Integrated</tspan>
+      <tspan x="460" dy="18">Solutions PM</tspan>
+    </text>
+    <text text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-weight="bold" font-size="14">
+      <tspan x="250" y="490">Stevens</tspan>
+      <tspan x="250" dy="18">Estimating PM</tspan>
+    </text>
+    <text text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-weight="bold" font-size="14">
+      <tspan x="220" y="300">Stevens /</tspan>
+      <tspan x="220" dy="18">Chemsteel PM</tspan>
+    </text>
+
+    <!-- OUTER ROLE LABELS -->
+    <!-- Top segment roles -->
+    <text x="365" y="55" fill="#3a4a5a" font-size="10" font-family="Arial, sans-serif" transform="rotate(-72,365,55)">Civil Dept. Lead</text>
+    <text x="410" y="38" fill="#3a4a5a" font-size="10" font-family="Arial, sans-serif" transform="rotate(-58,410,38)">Structural Dept. Lead</text>
+    <text x="465" y="30" fill="#3a4a5a" font-size="10" font-family="Arial, sans-serif" transform="rotate(-40,465,30)">Mechanical Dept. Lead</text>
+    <text x="525" y="38" fill="#3a4a5a" font-size="10" font-family="Arial, sans-serif" transform="rotate(-20,525,38)">Electrical Dept. Lead</text>
+    <text x="570" y="65" fill="#3a4a5a" font-size="10" font-family="Arial, sans-serif" transform="rotate(-5,570,65)">Quality Control</text>
+
+    <!-- Right segment roles -->
+    <text x="640" y="180" fill="#3a4a5a" font-size="10" font-family="Arial, sans-serif" transform="rotate(25,640,180)">Estimating</text>
+    <text x="660" y="265" fill="#3a4a5a" font-size="10" font-family="Arial, sans-serif" transform="rotate(50,660,265)">Nucor Coordinator</text>
+    <text x="660" y="430" fill="#3a4a5a" font-size="10" font-family="Arial, sans-serif" transform="rotate(110,660,430)">Vendor Coordination</text>
+
+    <!-- Bottom-right roles -->
+    <text x="620" y="560" fill="#3a4a5a" font-size="10" font-family="Arial, sans-serif" transform="rotate(145,620,560)">Estimating</text>
+    <text x="545" y="625" fill="#3a4a5a" font-size="10" font-family="Arial, sans-serif" transform="rotate(165,545,625)">Automation Engineer</text>
+    <text x="445" y="665" fill="#3a4a5a" font-size="10" font-family="Arial, sans-serif" transform="rotate(185,445,665)">Panel Shop Lead</text>
+
+    <!-- Bottom-left roles -->
+    <text x="310" y="670" fill="#3a4a5a" font-size="10" font-family="Arial, sans-serif" transform="rotate(210,310,670)">Vendor Coordination</text>
+    <text x="215" y="650" fill="#3a4a5a" font-size="10" font-family="Arial, sans-serif" transform="rotate(230,215,650)">Estimating</text>
+
+    <!-- Left-bottom roles -->
+    <text x="120" y="590" fill="#3a4a5a" font-size="10" font-family="Arial, sans-serif" transform="rotate(250,120,590)">Lead Estimator</text>
+    <text x="65" y="500" fill="#3a4a5a" font-size="10" font-family="Arial, sans-serif" transform="rotate(270,65,500)">Scope & Procurement</text>
+    <text x="35" y="400" fill="#3a4a5a" font-size="10" font-family="Arial, sans-serif" transform="rotate(290,35,400)">Vendor & Sub Coord.</text>
+
+    <!-- Left-top roles -->
+    <text x="30" y="295" fill="#3a4a5a" font-size="10" font-family="Arial, sans-serif" transform="rotate(310,30,295)">Superintendent</text>
+    <text x="45" y="210" fill="#3a4a5a" font-size="10" font-family="Arial, sans-serif" transform="rotate(330,45,210)">Safety Manager</text>
+    <text x="80" y="140" fill="#3a4a5a" font-size="10" font-family="Arial, sans-serif" transform="rotate(345,80,140)">Quality Manager</text>
+
+    <!-- Top-left roles -->
+    <text x="160" y="70" fill="#3a4a5a" font-size="10" font-family="Arial, sans-serif" transform="rotate(-82,160,70)">Project Controls</text>
+    <text x="240" y="35" fill="#3a4a5a" font-size="10" font-family="Arial, sans-serif" transform="rotate(-78,240,35)">Estimating</text>
+
+    <!-- Center circle -->
+    <circle cx="350" cy="350" r="90" fill="white"/>
+    <circle cx="350" cy="350" r="90" fill="none" stroke="#c45a2d" stroke-width="6"/>
+  </g>
+
+  <!-- Center text (counter-rotates to stay readable) -->
+  <g class="center-text">
+    <text x="350" y="338" text-anchor="middle" fill="#1a2030" font-size="24" font-weight="bold" font-family="Arial, sans-serif">Project</text>
+    <text x="350" y="366" text-anchor="middle" fill="#1a2030" font-size="24" font-weight="bold" font-family="Arial, sans-serif">Director</text>
+    <text x="350" y="388" text-anchor="middle" fill="#8a8a8a" font-size="11" font-family="Arial, sans-serif">Central accountability</text>
+  </g>
+</svg>
 </div>
 </body>
 </html>
